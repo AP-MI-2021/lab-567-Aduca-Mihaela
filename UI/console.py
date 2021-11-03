@@ -1,11 +1,14 @@
 from Domain.rezervare import toString
 from Logic.CRUD import adaugaRezervare, stergeRezervare, modificaRezervare
+from Logic.functionalitati import trecereRezervariClasaSuperioara, ieftinireRezervari
 
 
 def printMenu():
     print("1. Adauga rezervare")
     print("2. Sterge rezervare")
     print("3. Modifica rezervare")
+    print("4. Trecerea tuturor rezervarilor facute pe un nume citit, la o clasa superioara")
+    print("5. Ieftinirea rezervarilor la care s-a facut checkin cu un procentaj citit")
     print("a. Afisare rezervari")
     print("x. Iesire")
 
@@ -33,6 +36,14 @@ def uiModificareRezervare(lista):
     checkin = input("Dati noul checkin: ")
     return modificaRezervare(id, nume, clasa, pret, checkin, lista)
 
+def uiTrecereRezervare(lista):
+    numeCitit = input("Dati numele pentru care se vor aplica schimbarile: ")
+    return trecereRezervariClasaSuperioara(numeCitit, lista)
+
+def uiIeftinireRezervare(lista):
+    procentaj = float(input("Dati procentajul cu care se va face ieftinirea: "))
+    return ieftinireRezervari(procentaj, lista)
+
 def showAll(lista):
     for rezervare in lista:
         print(toString(rezervare))
@@ -49,6 +60,10 @@ def runMenu(lista):
             lista = uiStergereRezervare(lista)
         elif optiune == "3":
             lista = uiModificareRezervare(lista)
+        elif optiune == "4":
+            lista = uiTrecereRezervare(lista)
+        elif optiune == "5":
+            lista = uiIeftinireRezervare(lista)
         elif optiune == "a":
             showAll(lista)
         elif optiune == "x":
