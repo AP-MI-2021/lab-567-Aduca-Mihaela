@@ -16,22 +16,21 @@ def testAdaugaRezervare():
 def testStergeRezervare():
     lista = []
     lista = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
-    lista = adaugaRezervare("2", "Popescu", "bussines", 300, "nu", lista)
+    lista = adaugaRezervare("2", "Popescu", "business", 300, "nu", lista)
 
     lista = stergeRezervare("1", lista)
     assert len(lista) == 1
     assert getById("1", lista) is None
     assert getById("2", lista) is not None
 
-    lista = stergeRezervare("3", lista)
-    assert len(lista) == 1
-    assert getById("2", lista) is not None
+    lista = stergeRezervare("2", lista)
+    assert getById("2", lista) is None
 
 
 def testModificaRezervare():
     lista = []
     lista = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
-    lista = adaugaRezervare("2", "Popescu", "bussines", 300, "nu", lista)
+    lista = adaugaRezervare("2", "Popescu", "business", 300, "nu", lista)
 
     lista = modificaRezervare("1", "Irimescu", "economy plus", 200, "da", lista)
     rezervareUpdatata = getById("1", lista)
@@ -44,6 +43,6 @@ def testModificaRezervare():
     rezervareNeupdatata = getById("2", lista)
     assert getId(rezervareNeupdatata) == "2"
     assert getNume(rezervareNeupdatata) == "Popescu"
-    assert getClasa(rezervareNeupdatata) == "bussines"
+    assert getClasa(rezervareNeupdatata) == "business"
     assert getPret(rezervareNeupdatata) == 300
     assert getCheckin(rezervareNeupdatata) == "nu"

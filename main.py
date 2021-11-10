@@ -1,12 +1,20 @@
-from Logic.CRUD import adaugaRezervare
 from Tests.testAll import runAllTests
+from UI.commandLine import mainCommandLine
 from UI.console import runMenu
 
 
 def main():
     runAllTests()
     lista = []
-    lista = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
-    lista = adaugaRezervare("2", "Popescu", "bussines", 300, "nu", lista)
-    runMenu(lista)
+    while True:
+        option = input("pentru meniu apasati 1, pentru consola apasati 2; pentru a inchide apasai x: ")
+        if option == "1":
+            runMenu([])
+        elif option == "2":
+            mainCommandLine(lista)
+        elif option == "x":
+            break
+        else:
+            print("optiune gresita")
+
 main()

@@ -24,7 +24,7 @@ def trecereRezervariClasaSuperioara(numeCitit, lista):
                     rezervareNoua = creeazaRezervare(
                         getId(rezervare),
                         getNume(rezervare),
-                        "bussines",
+                        "business",
                         getPret(rezervare),
                         getCheckin(rezervare)
                     )
@@ -57,3 +57,48 @@ def ieftinireRezervari(procentaj, lista):
         else:
             listaNoua.append(rezervare)
     return listaNoua
+
+
+def determinarePretMaximClasa(lista):
+    '''
+    Determinarea pretului maxim pentru fiecare clasa.
+    :param lista: lista de rezervari
+    :return: returneaza pretul maxim
+    '''
+
+    pretMaxEconomy = 0
+    pretMaxEconomyPlus = 0
+    pretMaxBusiness = 0
+
+    for rezervare in lista:
+        if getClasa(rezervare) == "economy" and getPret(rezervare) > pretMaxEconomy:
+            pretMaxEconomy = getPret(rezervare)
+        elif getClasa(rezervare) == "economy plus" and getPret(rezervare) > pretMaxEconomyPlus:
+            pretMaxEconomyPlus = getPret(rezervare)
+        elif getClasa(rezervare) == "business" and getPret(rezervare) > pretMaxBusiness:
+            pretMaxBusiness = getPret(rezervare)
+
+    return pretMaxEconomy, pretMaxEconomyPlus, pretMaxBusiness
+
+
+def ordonareDescrescatorDupaPret(lista):
+    for i in range(0, len(lista)):
+        for j in range(i, len(lista)):
+            pretCurent = getPret(lista[i])
+            pretUrmator = getPret(lista[j])
+            if pretUrmator > pretCurent:
+                aux = lista[i]
+                lista[i] = lista[j]
+                lista[j] = aux
+    return lista
+
+def sumePentruFiecareNume(lista):
+    preturi  = {}
+    for rezervare in lista:
+        nume = getNume(rezervare)
+        pret = getPret(rezervare)
+        if nume in preturi:
+            preturi[nume]  = preturi[nume] + float(pret)
+        else:
+            preturi[nume] = float(pret)
+    return preturi
