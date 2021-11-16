@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from Domain.rezervare import getNume, getClasa, creeazaRezervare, getId, getPret, getCheckin
 
 
@@ -43,6 +45,16 @@ def trecereRezervariClasaSuperioara(numeCitit, lista):
     return listaNoua
 
 def ieftinireRezervari(procentaj, lista):
+    '''
+    Ieftineste rezervarile care au checkin-ul facut cu un procentaj dat
+    :param procentaj: procentajul dat
+    :param lista: o lista de rezervari
+    :return: lista dupa ieftinire
+    '''
+    if procentaj > 100:
+        raise ValueError("Nu se pot face modificari cu un procentaj peste 100!")
+    if procentaj < 0:
+        raise ValueError("Nu se pot afce modificari cu un procentaj sub 0!")
     listaNoua = []
     for rezervare in lista:
         if getCheckin(rezervare) == "da":
@@ -82,23 +94,35 @@ def determinarePretMaximClasa(lista):
 
 
 def ordonareDescrescatorDupaPret(lista):
-    for i in range(0, len(lista)):
-        for j in range(i, len(lista)):
-            pretCurent = getPret(lista[i])
-            pretUrmator = getPret(lista[j])
-            if pretUrmator > pretCurent:
-                aux = lista[i]
-                lista[i] = lista[j]
-                lista[j] = aux
-    return lista
+    '''
+    Ordoneaza rezervarile descrescator dupa pret.
+    :param lista: o lista de rezervari
+    :return: o noua lista, dupa ordonare
+    '''
+    listaNoua = []
+    listaNoua = deepcopy (lista)
+    for i in range(0, len(listaNoua) - 1):
+        for j in range(i + 1, len(listaNoua)):
+
+            if getPret(listaNoua[i]) < getPret(listaNoua[j]):
+                aux = listaNoua[j]
+                listaNoua[j] = listaNoua[i]
+                listaNoua[i] = aux
+    return listaNoua
 
 def sumePentruFiecareNume(lista):
+    '''
+    Afiseaza suma preturilor pentru fiecare nume.
+    :param lista: o lista de rezervari
+    :return: suma preturilor pentru fiecare nume
+    '''
     preturi  = {}
+
     for rezervare in lista:
         nume = getNume(rezervare)
         pret = getPret(rezervare)
         if nume in preturi:
-            preturi[nume]  = preturi[nume] + float(pret)
+            preturi[nume] = preturi[nume] + pret
         else:
-            preturi[nume] = float(pret)
+            preturi[nume] = pret
     return preturi

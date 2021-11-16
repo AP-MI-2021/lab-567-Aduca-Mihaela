@@ -9,5 +9,11 @@ def runAllTests():
     testAdaugaRezervare()
     testStergeRezervare()
     testModificaRezervare()
+    testTrecereRezervariClasaSuperioara()
+    testIeftinire()
+    testDeterminarePretMaximClasa()
+    testOrdonareDescrescatoareDupaPret()
+    testSumePentruFiecareNume()
+
 
 

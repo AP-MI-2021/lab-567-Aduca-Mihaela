@@ -11,7 +11,7 @@ def testTrecereRezervariClasaSuperioara():
     lista = adaugaRezervare("3", "Irimescu", "business", 250, "da", lista)
     lista = trecereRezervariClasaSuperioara("Popescu", lista)
 
-    assert getClasa(lista[0]) == "economy plus"
+    assert getClasa(lista[0]) == "economy"
     assert getClasa(lista[1]) == "business"
 
 testTrecereRezervariClasaSuperioara()
@@ -57,8 +57,11 @@ def testSumePentruFiecareNume():
     lista = []
     lista = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
     lista = adaugaRezervare("2", "Popescu", "economy plus", 100, "da", lista)
-    lista = sumePentruFiecareNume(lista)
-    assert getNume(lista[0]) == 350
-    assert getNume(lista[1]) == 100
-testSumePentruFiecareNume()
+    lista = adaugaRezervare("3", "Popescu", "business", 550, "da", lista)
+
+    rezultat = sumePentruFiecareNume(lista)
+    assert rezultat["Martinescu"] == 350
+    assert rezultat["Popescu"] == 650
+
+
 
