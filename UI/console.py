@@ -78,7 +78,7 @@ def uiTrecereRezervare(lista, undoList, redoList):
 def uiIeftinireRezervare(lista, undoList, redoList):
     try:
         procentaj = float(input("Dati procentajul cu care se va face ieftinirea: "))
-        
+
         rezultat = ieftinireRezervari(procentaj, lista)
         undoList.append(lista)
         redoList.clear()
