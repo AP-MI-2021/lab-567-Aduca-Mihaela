@@ -9,8 +9,8 @@ def main():
     lista = []
     lista = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
     lista = adaugaRezervare("2", "Popescu", "economy plus", 100, "da", lista)
-    lista = adaugaRezervare("3", "Popescu", "business", 550, "da", lista)
-    lista = adaugaRezervare("4", "Olariu", "economy", 200, "nu", lista)
+    #lista = adaugaRezervare("3", "Popescu", "business", 550, "da", lista)
+    #lista = adaugaRezervare("4", "Olariu", "economy", 200, "nu", lista)
     while True:
         print("Tastati 1 pentru meniu.")
         print("Tastati 2 pentru comenzi.")

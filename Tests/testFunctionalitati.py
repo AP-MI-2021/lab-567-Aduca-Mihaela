@@ -69,17 +69,17 @@ def testUndoRedo():
     undoList = []
     redoList = []
 
-    # 2. se adauga prima rezervare
+    # 2.adaugam prima rezervare
     rezultat = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
     undoList.append(lista)
     lista = rezultat
 
-    # 3. se adauga a doua rezervare
+    # 3.adaugam a doua rezervare
     rezultat = adaugaRezervare("2", "Popescu", "business", 100, "da", lista)
     undoList.append(lista)
     lista = rezultat
 
-    # 4. se adauga a treia rezervare
+    # 4.adaugam a treia rezervare
     rezultat = adaugaRezervare("3", "Popescu", "business", 550, "da", lista)
     undoList.append(lista)
     lista = rezultat

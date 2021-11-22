@@ -109,6 +109,14 @@ def ordonareDescrescatorDupaPret(lista):
                 listaNoua[j] = listaNoua[i]
                 listaNoua[i] = aux
     return listaNoua
+def ordonareDescrescatorDupaPret(lista):
+    '''
+    Sortare cheltuieli descrescator
+    :param lista: lista
+    :return: lista cheltuieli descrescator
+    '''
+    return sorted(lista, key = lambda lista: getPret(lista), reverse = True)
+
 
 def sumePentruFiecareNume(lista):
     '''
