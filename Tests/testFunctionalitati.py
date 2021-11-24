@@ -47,10 +47,13 @@ def testOrdonareDescrescatoareDupaPret():
     lista = adaugaRezervare("1", "Martinescu", "economy", 350, "da", lista)
     lista = adaugaRezervare("2", "Popescu", "economy plus", 100, "da", lista)
     lista = adaugaRezervare("3", "Irimescu", "business", 250, "da", lista)
-    lista = ordonareDescrescatorDupaPret(lista)
-    assert getId(lista[0]) == "1"
-    assert getId(lista[1]) == "3"
-    assert getId(lista[2]) == "2"
+    undoList = []
+    redoList = []
+
+    rezultat = ordonareDescrescatorDupaPret(lista, undoList, redoList)
+    assert getId(rezultat[0]) == "1"
+    assert getId(rezultat[1]) == "3"
+    assert getId(rezultat[2]) == "2"
 testOrdonareDescrescatoareDupaPret()
 
 def testSumePentruFiecareNume():
@@ -326,7 +329,7 @@ def testUndoRedoOrdonareDupaPret():
     lista = rezultat
 
     # 5. se ordoneaza lista
-    rezultat = ordonareDescrescatorDupaPret(lista)
+    rezultat = ordonareDescrescatorDupaPret(lista, undoList, redoList)
     undoList.append(lista)
     lista = rezultat
     assert getId(lista[0]) == "3"

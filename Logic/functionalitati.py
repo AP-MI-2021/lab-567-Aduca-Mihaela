@@ -92,30 +92,20 @@ def determinarePretMaximClasa(lista):
 
     return pretMaxEconomy, pretMaxEconomyPlus, pretMaxBusiness
 
+def dupaPret(rezervare):
+    return getPret(rezervare)
 
-def ordonareDescrescatorDupaPret(lista):
+
+def ordonareDescrescatorDupaPret(lista, undoList, redoList):
     '''
-    Ordoneaza rezervarile descrescator dupa pret.
+    Ordoneaza descrescator rezervarile dupa pret
     :param lista: o lista de rezervari
-    :return: o noua lista, dupa ordonare
+    :return: noua lista dupa ordonare
     '''
-    listaNoua = []
-    listaNoua = deepcopy (lista)
-    for i in range(0, len(listaNoua) - 1):
-        for j in range(i + 1, len(listaNoua)):
-
-            if getPret(listaNoua[i]) < getPret(listaNoua[j]):
-                aux = listaNoua[j]
-                listaNoua[j] = listaNoua[i]
-                listaNoua[i] = aux
-    return listaNoua
-def ordonareDescrescatorDupaPret(lista):
-    '''
-    Sortare cheltuieli descrescator
-    :param lista: lista
-    :return: lista cheltuieli descrescator
-    '''
-    return sorted(lista, key = lambda lista: getPret(lista), reverse = True)
+    if (undoList is not None) & (redoList is not None):
+        undoList.append(lista)
+        redoList.clear()
+    return sorted(lista, key=lambda lista: getPret(lista), reverse=True)
 
 
 def sumePentruFiecareNume(lista):

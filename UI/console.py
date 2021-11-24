@@ -95,8 +95,12 @@ def uiDeterminarePretMaximPeClasa(lista):
     print("Pretul maxim la clasa business este " + str(pretMaximBusiness))
 
 
-def uiOrdoneazaDescrescatorDupaPret(lista):
-    return ordonareDescrescatorDupaPret(lista)
+def uiOrdoneazaDescrescatorDupaPret(lista, undoList, redoList):
+    rezultat = ordonareDescrescatorDupaPret(lista, undoList, redoList)
+    undoList.append(lista)
+    redoList.clear()
+    return rezultat
+
 
 def uiSumePretPentruNume(lista):
     rezultat = sumePentruFiecareNume(lista)
@@ -126,11 +130,11 @@ def runMenu(lista):
         elif optiune == "4":
             lista = uiTrecereRezervare(lista, undoList, redoList)
         elif optiune == "5":
-            lista = uiIeftinireRezervare(lista, undoList, redoList)
+            lista = uiIeftinireRezervare(lista,undoList, redoList)
         elif optiune == "6":
             lista = uiDeterminarePretMaximPeClasa(lista)
         elif optiune == "7":
-            lista = uiOrdoneazaDescrescatorDupaPret(lista)
+            lista = uiOrdoneazaDescrescatorDupaPret(lista, undoList, redoList)
         elif optiune == "8":
             lista = uiSumePretPentruNume(lista)
         elif optiune == "u":
